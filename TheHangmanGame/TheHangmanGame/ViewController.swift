@@ -11,10 +11,12 @@ class ViewController: UIViewController {
     let lettersView = UIView()
     let lettersLabel = UILabel()
     let choosingLettersButton = UIButton(type: .system)
-    var numberOfLetters = 0
     var chosenLetters: [String] = []
     var word = "CANALHA"
     var promptWord = ""
+    var score = 0
+    var wrongAnswer = 0
+    
     
     override func loadView() {
         view = UIView()
@@ -28,22 +30,23 @@ class ViewController: UIViewController {
         view.addSubview(lettersView)
         
         lettersLabel.translatesAutoresizingMaskIntoConstraints = false
-        lettersLabel.backgroundColor = .white
-        lettersLabel.font = UIFont.systemFont(ofSize: 50)
         lettersLabel.textAlignment = .center
-        lettersLabel.text = "\(word)"
         lettersView.addSubview(lettersLabel)
         
         choosingLettersButton.translatesAutoresizingMaskIntoConstraints = false
         choosingLettersButton.setTitle("GUESS A LETTER!", for: .normal)
         choosingLettersButton.addTarget(self, action: #selector(guess), for: .touchUpInside)
-        choosingLettersButton.backgroundColor = .darkGray
+        choosingLettersButton.backgroundColor = .white
+        choosingLettersButton.tintColor = .black
+        choosingLettersButton.layer.cornerRadius = 15
+        choosingLettersButton.layer.borderWidth = 2
+        choosingLettersButton.layer.borderColor = UIColor.black.cgColor
         view.addSubview(choosingLettersButton)
         
         
         
         NSLayoutConstraint.activate([
-            lettersView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            lettersView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 30),
             lettersView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
             lettersView.heightAnchor.constraint(equalToConstant: 90),
             lettersView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -64,6 +67,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.backgroundColor = .cyan
+        title = "Score: \(score)"
+        
         play()
         // Do any additional setup after loading the view.
     }
@@ -81,7 +87,14 @@ class ViewController: UIViewController {
     }
     
     func submit(_ chosenLetter: String ) {
-        chosenLetters.append(chosenLetter)
+        if oneLetter(chosenLetter) {
+            chosenLetters.append(chosenLetter)
+        } else {
+            let ac = UIAlertController(title: "X", message: "1 letter only!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Return", style: .default))
+            present(ac, animated: true)
+        }
+        
         
         for letter in word {
             let stringLetter = String(letter)
@@ -90,12 +103,21 @@ class ViewController: UIViewController {
             } else {
                 promptWord += "*"
             }
-         }
+        }
         lettersLabel.text? = promptWord.uppercased()
         promptWord = ""
     }
     
+    func oneLetter(_ letter: String) -> Bool {
+        if letter.count == 1 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func play() {
+        
         lettersLabel.font = UIFont.systemFont(ofSize: 30)
         lettersLabel.text = "THE HANGMAN GAME!"
         lettersLabel.backgroundColor = .black

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA8E953E29CD0D09001463F9 /* istockphoto-1254540631-612x612.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FA8E953D29CD0D09001463F9 /* istockphoto-1254540631-612x612.jpeg */; };
 		FAE7359B29C251AE007379F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7359A29C251AE007379F3 /* AppDelegate.swift */; };
 		FAE7359D29C251AE007379F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7359C29C251AE007379F3 /* SceneDelegate.swift */; };
 		FAE7359F29C251AE007379F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7359E29C251AE007379F3 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA8E953D29CD0D09001463F9 /* istockphoto-1254540631-612x612.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "istockphoto-1254540631-612x612.jpeg"; path = "Images/istockphoto-1254540631-612x612.jpeg"; sourceTree = SOURCE_ROOT; };
 		FAE7359729C251AE007379F3 /* TheHangmanGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheHangmanGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE7359A29C251AE007379F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE7359C29C251AE007379F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				FAE735A629C251B0007379F3 /* Assets.xcassets */,
 				FAE735A829C251B0007379F3 /* LaunchScreen.storyboard */,
 				FAE735AB29C251B0007379F3 /* Info.plist */,
+				FA8E953D29CD0D09001463F9 /* istockphoto-1254540631-612x612.jpeg */,
 				FAE735A329C251AE007379F3 /* TheHangmanGame.xcdatamodeld */,
 			);
 			path = TheHangmanGame;
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE735AA29C251B0007379F3 /* LaunchScreen.storyboard in Resources */,
+				FA8E953E29CD0D09001463F9 /* istockphoto-1254540631-612x612.jpeg in Resources */,
 				FAE735A729C251B0007379F3 /* Assets.xcassets in Resources */,
 				FAE735A229C251AE007379F3 /* Main.storyboard in Resources */,
 			);

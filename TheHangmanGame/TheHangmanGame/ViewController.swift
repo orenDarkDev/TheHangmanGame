@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var numberOfLetters = 0
+    var playButton = UIButton(type: .system)
     let lettersView = UIView()
     let lettersLabel = UILabel()
     let choosingLettersButton = UIButton(type: .system)
@@ -15,13 +17,23 @@ class ViewController: UIViewController {
     var word = "CANALHA"
     var promptWord = ""
     var score = 0
-    var wrongAnswer = 0
+    var wrongAnswers = 0
     
     
     override func loadView() {
         view = UIView()
         view.backgroundColor = .orange
         
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.setTitle("PLAY", for: .normal)
+        playButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
+        playButton.tintColor = .white
+        playButton.backgroundColor = .systemGreen
+        playButton.layer.borderColor = UIColor.white.cgColor
+        playButton.layer.borderWidth = 4
+        playButton.layer.cornerRadius = 50
+        playButton.addTarget(self, action: #selector(play), for: .touchUpInside)
+        view.addSubview(playButton)
         
         lettersView.translatesAutoresizingMaskIntoConstraints = false
         lettersView.backgroundColor = .lightGray
@@ -31,6 +43,10 @@ class ViewController: UIViewController {
         
         lettersLabel.translatesAutoresizingMaskIntoConstraints = false
         lettersLabel.textAlignment = .center
+        lettersLabel.text = "THE HANGMAN GAME!"
+        lettersLabel.font = UIFont.systemFont(ofSize: 30)
+        lettersLabel.backgroundColor = .black
+        lettersLabel.textColor = .systemGreen
         lettersView.addSubview(lettersLabel)
         
         choosingLettersButton.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +74,12 @@ class ViewController: UIViewController {
             
             choosingLettersButton.topAnchor.constraint(equalTo: lettersView.bottomAnchor, constant: 30),
             choosingLettersButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            choosingLettersButton.widthAnchor.constraint(equalToConstant: 200)
+            choosingLettersButton.widthAnchor.constraint(equalToConstant: 200),
+            
+            playButton.topAnchor.constraint(equalTo: choosingLettersButton.bottomAnchor, constant: 50),
+            playButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
+            playButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -100),
+            playButton.heightAnchor.constraint(equalToConstant: 120)
             
         ])
         
@@ -70,7 +91,7 @@ class ViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .cyan
         title = "Score: \(score)"
         
-        play()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -116,14 +137,15 @@ class ViewController: UIViewController {
         }
     }
     
-    func play() {
-        
-        lettersLabel.font = UIFont.systemFont(ofSize: 30)
-        lettersLabel.text = "THE HANGMAN GAME!"
-        lettersLabel.backgroundColor = .black
-        lettersLabel.textColor = .systemGreen
-    }
-    
+    @objc func play() {
+        numberOfLetters = word.count
+        for _ in 0..<word.count {
+            promptWord += "*"
+        }
+        lettersLabel.text = promptWord
+        promptWord = ""
+        }
+
 }
 
 
